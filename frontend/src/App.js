@@ -1,6 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import { clarity } from 'react-microsoft-clarity';
 
+import './App.css';
+import logo from './logo.svg';
+
+if (process.env.NODE_ENV === 'production')
+  clarity.init('midum145ht');
 function App() {
   return (
     <div className="App">
