@@ -1,14 +1,15 @@
-// backend/config/db.js
-import { connect } from 'mongoose';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
+dotenv.config();
+const encodedUsername = encodeURIComponent(process.env.rawUsername);
+const encodedPassword = encodeURIComponent(process.env.rawPassword);
+const uri = `mongodb+srv://${encodedUsername}:${encodedPassword}@${process.env.clusterUrl}/${process.env.db}?retryWrites=true&w=majority&appName=StockSparkDBDev`;
 
 const connectDB = async () => {
     try {
-        const conn = await connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-        });
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
+        await mongoose.connect(uri)
+        console.log("MongoDB database connection established successfully")
     } catch (error) {
         console.error(`Error connecting to MongoDB: ${error.message}`);
         process.exit(1); // Exit process with failure

@@ -1,11 +1,11 @@
 // backend/routes/productRoutes.js
 import { Router } from 'express';
-import { getProducts } from '../controllers/productController';
+import { getProducts, createProduct } from '../controllers/productController.js';
 
 const router = Router();
 
-// Routes
-// Example: GET all products
-router.get('/', getProducts);
+
+router.get('/', getProducts); // ROUTE TO GET all products
+router.post('/', createProduct); // ROUTE TO CREATE NEW PRODUCT
 
 export default router;

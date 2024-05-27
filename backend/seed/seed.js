@@ -6,7 +6,6 @@ dotenv.config();
 const encodedUsername = encodeURIComponent(process.env.rawUsername);
 const encodedPassword = encodeURIComponent(process.env.rawPassword);
 const uri = `mongodb+srv://${encodedUsername}:${encodedPassword}@${process.env.clusterUrl}/${process.env.db}?retryWrites=true&w=majority&appName=StockSparkDBDev`;
-console.log(uri)
 
 // MongoDB connection setup
 mongoose
