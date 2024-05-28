@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from './app/hooks'
-import { incremented, amountAdded } from './features/counter/counter-slice'
+import { amountAdded } from './features/counter/counter-slice'
 import { useFetchBreedsQuery } from './features/dogs/dogs-api-slices'
 
 import reactLogo from './assets/react.svg'
@@ -13,7 +13,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   const [numDogs, setNumDogs] = useState(10);
-  const { data = [], isFetching } = useFetchBreedsQuery(numDogs);
+  const { data = [] } = useFetchBreedsQuery(numDogs);
 
   function handleClick() {
     dispatch(amountAdded(3))
