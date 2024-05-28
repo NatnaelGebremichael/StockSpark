@@ -1,7 +1,7 @@
 import express from 'express';
-import connectDB from '../config/db.js';
+import connectDB from './config/db.js';
 
-import productRoutes from '../routes/productRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
