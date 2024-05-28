@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { clarity } from 'react-microsoft-clarity'
+
 import { useAppDispatch, useAppSelector } from './app/hooks'
 import { amountAdded } from './features/counter/counter-slice'
 import { useFetchBreedsQuery } from './features/dogs/dogs-api-slices'
@@ -5,7 +8,10 @@ import { useFetchBreedsQuery } from './features/dogs/dogs-api-slices'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useState } from 'react'
+
+
+//if (process.env.NODE_ENV === 'production')
+clarity.init('midum145ht');
 
 function App() {
 
