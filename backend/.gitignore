@@ -3,3 +3,4 @@
 
 # Env Variables
 .env
+.vercel
