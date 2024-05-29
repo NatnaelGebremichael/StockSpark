@@ -1,10 +1,17 @@
+import cors from 'cors'
+
 import express from 'express';
 import connectDB from './config/db.js';
-
 import productRoutes from './routes/productRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Middleware
+app.use(express.json());
+app.use(cors({
+    origin: 'https://stock-spark.vercel.app/', //'http://localhost:5000/',
+}));
 
 // Connect to MongoDB 
 connectDB();
