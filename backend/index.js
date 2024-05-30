@@ -8,9 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+// For Dev http://localhost:5173 (or current port)
 app.use(express.json());
 app.use(cors({
-    origin: 'https://stock-spark.vercel.app/', //'http://localhost:5000/',
+    origin: process.env.origin || "http://localhost:5173",
 }));
 
 // Connect to MongoDB 
