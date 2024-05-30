@@ -1,10 +1,18 @@
+import cors from 'cors'
+
 import express from 'express';
 import connectDB from './config/db.js';
-
 import productRoutes from './routes/productRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Middleware
+// For Dev http://localhost:5173 (or current port)
+app.use(express.json());
+app.use(cors({
+    origin: process.env.origin || "http://localhost:5173",
+}));
 
 // Connect to MongoDB 
 connectDB();
