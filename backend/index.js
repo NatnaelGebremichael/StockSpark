@@ -11,9 +11,9 @@ const PORT = process.env.PORT || 5000;
 // For Dev http://localhost:5173 (or current port)
 app.use(express.json());
 app.use(cors({
-    origin: process.env.origin || "http://localhost:5173",
+    origin: process.env.origin,
 }));
-
+console.log("process.env.origin: ", process.env.origin)
 // Connect to MongoDB 
 connectDB();
 
