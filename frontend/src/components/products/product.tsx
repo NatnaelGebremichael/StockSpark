@@ -6,7 +6,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+
 import { useFetchProductsQuery } from '../../features/products/product-api-slice';
+import { Button } from '@mui/material';
 const Product = () => {
     const { data: products = [], isLoading, error } = useFetchProductsQuery();
 
@@ -27,35 +29,51 @@ const Product = () => {
         return <div>Error: {errorMessage}</div>;
     }
 
+    function handleOnClick(productID: string) {
+        console.log("ProductID: ", productID)
+    }
+
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Product Name</TableCell>
-                        <TableCell align="right">Price</TableCell>
-                        <TableCell align="right">Quantity</TableCell>
-                        <TableCell align="right">Category</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {products.map((product) => (
-                        <TableRow
-                            key={product.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {product.name}
-                            </TableCell>
-                            <TableCell align="right">{product.price}</TableCell>
-                            <TableCell align="right">{product.quantity}</TableCell>
-                            <TableCell align="right">{product.category}</TableCell>
+        <div>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Product Name</TableCell>
+                            <TableCell align="right">Price</TableCell>
+                            <TableCell align="right">Quantity</TableCell>
+                            <TableCell align="right">ID</TableCell>
+                            <TableCell align="right">Category</TableCell>
+                            <TableCell align="right"></TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {products.map((product) => (
+                            <TableRow
+                                key={product._id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {product.name}
+                                </TableCell>
+                                <TableCell align="right">{product.price}</TableCell>
+                                <TableCell align="right">{product.quantity}</TableCell>
+                                <TableCell align="right">{product._id}</TableCell>
+                                <TableCell align="right">{product.category}</TableCell>
+                                <TableCell align="right">
+                                    <Button size='small' onClick={() => { handleOnClick(product._id) }}>+</Button>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <Button size='small' onClick={() => { handleOnClick(product._id) }}>-</Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     );
 };
 
