@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const STOCK_SPARK_API_KEY = import.meta.env.VITE_STOCK_SPARK_API_KEY || "";
 const STOCK_BASE_URL = import.meta.env.VITE_STOCK_BASE_URL || "";
 
-interface Products {
+export interface Products {
     _id: string;
     name: string;
     price: number;
