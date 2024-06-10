@@ -1,6 +1,5 @@
 import './App.css'
-import Home from './components/Home/Home';
-import Product from './components/Products/product';
+import { Home, Products } from './components/index'
 
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
@@ -28,7 +27,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Product" element={<Product />} />
+        <Route path="/Products" element={<Products />} />
       </Routes>
     </div>
   )
