@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const STOCK_SPARK_API_KEY = import.meta.env.VITE_STOCK_SPARK_API_KEY || "";
-// const STOCK_BASE_URL = import.meta.env.VITE_STOCK_BASE_URL;
+const STOCK_BASE_URL = import.meta.env.VITE_STOCK_BASE_URL;
 
 export interface Products {
     _id: string;
@@ -15,7 +15,7 @@ export interface Products {
 export const productApiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://stock-spark-lfdk.vercel.app/",
+        baseUrl: STOCK_BASE_URL,
         prepareHeaders(headers) {
             if (STOCK_SPARK_API_KEY) {
                 headers.set('authorization', `Bearer ${STOCK_SPARK_API_KEY}`)
