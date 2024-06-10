@@ -1,8 +1,17 @@
 import ProductList from './productList';
+import { logPageView } from '../../analytics';
+import useDocumentTitle from '../../useDocumentTitle';
 import { useFetchProductsQuery } from '../../features/products/product-api-slice';
+
+import { useEffect } from 'react';
 
 const Products = () => {
     const { data: products = [], isLoading, error } = useFetchProductsQuery();
+    useDocumentTitle('Products Page - Stock + Spark');
+
+    useEffect(() => {
+        logPageView(location.pathname, document.title);
+    }, [location]);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -20,6 +29,7 @@ const Products = () => {
         }
         return <div>Error: {errorMessage}</div>;
     }
+
 
 
     return (
