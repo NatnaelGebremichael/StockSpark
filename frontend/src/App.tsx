@@ -17,11 +17,8 @@ if (NODE_ENV === 'production') clarity.init(CLARITY_ID);
 function App() {
 
   const location = useLocation();
-  
-  useEffect(() => {
-    // Initialize ReactGA with your tracking ID
-    ReactGA.initialize('YOUR_TRACKING_ID');
 
+  useEffect(() => {
     // Track page views on route changes
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
