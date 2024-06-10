@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Footer, Header, Info, Topics } from '../index'
 
 const Home = () => {

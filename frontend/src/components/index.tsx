@@ -1,4 +1,4 @@
-import Products from "./products/product"
+import Products from "./Products/product"
 import Sales from "./Sales/sales"
 import Footer from "./ui/Footer/Footer"
 import Header from "./ui/Header/Header"

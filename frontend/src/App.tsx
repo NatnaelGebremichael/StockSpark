@@ -1,6 +1,6 @@
 import './App.css'
-import Home from './components/products/Home';
-import Product from './components/products/product';
+import Home from './components/Home/Home';
+import Product from './components/Products/product';
 
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
