@@ -15,7 +15,7 @@ export interface Products {
 export const productApiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: STOCK_BASE_URL,
+        baseUrl: "https://stock-spark-lfdk.vercel.app/",
         prepareHeaders(headers) {
             if (STOCK_SPARK_API_KEY) {
                 headers.set('authorization', `Bearer ${STOCK_SPARK_API_KEY}`)
