@@ -1,4 +1,4 @@
-import Products from "./Products/product.tsx"
+import Products from './Products/products.tsx'
 import Home from "./Home/Home.tsx"
 import Sales from "./Sales/sales.tsx"
 import Footer from "./ui/Footer/Footer.tsx"

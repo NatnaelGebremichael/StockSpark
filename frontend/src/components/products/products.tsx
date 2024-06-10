@@ -1,7 +1,7 @@
 import { useFetchProductsQuery } from '../../features/products/product-api-slice';
 import ProductList from './productList';
 
-const Product = () => {
+const Products = () => {
     const { data: products = [], isLoading, error } = useFetchProductsQuery();
 
     if (isLoading) {
@@ -29,4 +29,4 @@ const Product = () => {
     );
 };
 
-export default Product;
+export default Products;
