@@ -6,10 +6,8 @@ import { useEffect } from 'react';
 import { clarity } from 'react-microsoft-clarity'
 import { Route, Routes } from 'react-router-dom';
 
-
-
-
-const TRACKING_ID = "G-ZCLTBCKYFC"; // OUR_TRACKING_ID
+// OUR_TRACKING_ID
+const TRACKING_ID = import.meta.env.GA_TRACKING_ID || ""; 
 ReactGA.initialize(TRACKING_ID);
 
 const NODE_ENV = import.meta.env.VITE_NODE_ENV || "";
