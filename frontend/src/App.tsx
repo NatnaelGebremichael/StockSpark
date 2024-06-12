@@ -8,7 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 const CLARITY_ID = import.meta.env.VITE_CLARITY_ID || "";
 
 const NODE_ENV = import.meta.env.VITE_NODE_ENV || "";
-if (NODE_ENV === 'production') clarity.init(CLARITY_ID);
+if (NODE_ENV === 'production' || NODE_ENV === 'dev') clarity.init(CLARITY_ID);
 
 initGA();
 

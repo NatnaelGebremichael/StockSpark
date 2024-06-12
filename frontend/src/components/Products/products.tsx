@@ -1,3 +1,5 @@
+import './product.css'
+import { Navbar } from '../index'
 import ProductList from './productList';
 import { logPageView } from '../../analytics';
 import useDocumentTitle from '../../useDocumentTitle';
@@ -33,8 +35,11 @@ const Products = () => {
 
 
     return (
-        <div>
-            <ProductList products={products} />
+        <div className='ProductsPage'>
+            <div className='wrapper'>
+                <Navbar />
+                <ProductList products={products} />
+            </div>
         </div>
     );
 };

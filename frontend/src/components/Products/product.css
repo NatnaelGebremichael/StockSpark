@@ -1,0 +1,26 @@
+.ProductsPage {
+    min-height: 100vh;
+    background: url('../../assets/Header-Background.png');
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+    height: 100vh;
+
+}
+
+.ProductsTable {
+    /* ProductsTable */
+
+    width: 1024px;
+    height: 434px;
+    top: 200px;
+    border-radius: 0px 0px 10px 10px;
+    position: relative;
+}
+
+@media (max-width: 1040px) {
+    .ProductsTable {
+        width: 694px;
+    }
+}
