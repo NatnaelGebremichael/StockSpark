@@ -11,8 +11,11 @@ export interface Products {
     category: string;
 }
 
-// For Dev  use http://localhost:5000/ (or current port) for baseUrl
+/**
+ * ProductAPI to get AllProducts
+ */
 export const productApiSlice = createApi({
+
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: STOCK_BASE_URL,
@@ -29,9 +32,20 @@ export const productApiSlice = createApi({
                 query() {
                     return '/products'
                 }
+            }),
+
+            updateProductQuantity: builder.mutation<Products, { id: String, quantity: Number}>({
+                query({ id, quantity}) {
+                    return {
+                        url: `/products/${id}`,
+                        method: 'patch',
+                        body: { quantity }
+                    }
+                }
             })
+
         }
     }
 })
 
-export const { useFetchProductsQuery } = productApiSlice;
+export const { useFetchProductsQuery, useUpdateProductQuantityMutation } = productApiSlice;
