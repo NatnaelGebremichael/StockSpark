@@ -11,7 +11,7 @@ const router = Router();
 
 router.get("/", authMiddleware, getProducts); // ROUTE TO GET all products
 router.post("/", authMiddleware, createProduct); // ROUTE TO CREATE NEW PRODUCT
-router.put("/:id/quantity", authMiddleware, updateProductQuantity); // ROUTE TO UPDATE PRODUCT QUANTITY
+router.patch("/:id/quantity", authMiddleware, updateProductQuantity); // ROUTE TO UPDATE PRODUCT QUANTITY
 
 router.options("/:id/quantity", (req, res) => {
   res.setHeader("Access-Control-Allow-Methods", "PATCH");
