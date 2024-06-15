@@ -8,8 +8,9 @@ import { useFetchProductsQuery } from '../../features/products/product-api-slice
 import { useEffect } from 'react';
 
 const Products = () => {
-    const { data: products = [], isLoading, error } = useFetchProductsQuery();
     useDocumentTitle('Products Page - Stock + Spark');
+
+    const { data: products = [], isLoading, error } = useFetchProductsQuery();
 
     useEffect(() => {
         logPageView(location.pathname, document.title);

@@ -8,15 +8,25 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 
 import './product.css'
-import { Products } from '../../features/products/product-api-slice';
-
-
-function handleOnClick(productID: string) {
-    console.log("ProductID: ", productID)
-}
-
+import { Products, useUpdateProductQuantityMutation } from '../../features/products/product-api-slice';
 
 const ProductList = ({ products = [] }: { products: Products[] }) => {
+
+    const [ updateProductQuantity ] = useUpdateProductQuantityMutation();
+
+    const handleQuantityChange = async (productId: string, change: number) => {
+        const product = products.find((p) => p._id === productId);
+        if (product) {
+            const newQuantity = product.quantity + change;
+            try {
+                await updateProductQuantity({ id: productId, quantity: newQuantity }).unwrap();
+                // Update successful, perform any necessary actions
+            } catch (error) {
+                // Handle error
+            }
+        }
+    };
+
     return (
         <div className='wrapper'>
             <div className='ProductsTable'>
@@ -47,10 +57,10 @@ const ProductList = ({ products = [] }: { products: Products[] }) => {
                                     <TableCell align="right">{product._id}</TableCell>
                                     <TableCell align="right">{product.category}</TableCell>
                                     <TableCell align="right">
-                                        <Button size='small' onClick={() => { handleOnClick(product._id) }}>+</Button>
+                                        <Button size='small' onClick={() =>  handleQuantityChange(product._id, 1) }>+</Button>
                                     </TableCell>
                                     <TableCell align="right">
-                                        <Button size='small' onClick={() => { handleOnClick(product._id) }}>-</Button>
+                                        <Button size='small' onClick={() =>  handleQuantityChange(product._id, -1) }>-</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
