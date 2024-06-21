@@ -11,7 +11,7 @@ const corsOrigins = [
   'https://stock-spark-lfdk.vercel.app'
 ];
 
-// Middleware
+// Middleware  
 app.use(express.json());
 app.use(
   cors({
