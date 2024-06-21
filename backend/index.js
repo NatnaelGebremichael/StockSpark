@@ -31,7 +31,10 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello From Node API");
+  res.json({
+    message: "Hello From Node API",
+    CORS_ORIGIN: process.env.CORS_ORIGIN
+  });
 });
 app.use("/products", productRoutes);
 
