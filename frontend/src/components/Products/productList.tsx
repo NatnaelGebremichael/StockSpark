@@ -8,24 +8,48 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 
 import './product.css'
-import { Products, useUpdateProductQuantityMutation } from '../../features/products/product-api-slice';
+import { useFetchProductsQuery, useUpdateProductQuantityMutation, } from '../../features/products/product-api-slice';
 
-const ProductList = ({ products = [] }: { products: Products[] }) => {
+const ProductList = () => {
 
-    const [ updateProductQuantity ] = useUpdateProductQuantityMutation();
+    const { data: products = [], isLoading, error, refetch } = useFetchProductsQuery();
+    const [updateProductQuantity, { isLoading: isUpdating }] = useUpdateProductQuantityMutation();
 
     const handleQuantityChange = async (productId: string, change: number) => {
         const product = products.find((p) => p._id === productId);
         if (product) {
             const newQuantity = product.quantity + change;
             try {
-                await updateProductQuantity({ id: productId, quantity: newQuantity }).unwrap();
+                const updatedProduct = await updateProductQuantity({ id: productId, quantity: newQuantity }).unwrap();
                 // Update successful, perform any necessary actions
-            } catch (error) {
+                // setUpdatedProductId(id);
+                refetch();
+                console.log('Product updated:', updatedProduct);
+            } catch (err) {
                 // Handle error
+                console.error('Failed to update product:', err);
             }
         }
     };
+
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        let errorMessage = 'An error occurred.';
+        if ('status' in error) {
+            // You can access the error status and data if needed
+            const errorStatus = error.status;
+            const errorData = error.data;
+            errorMessage = `Error ${errorStatus}: ${JSON.stringify(errorData)}`;
+        } else if ('message' in error) {
+            errorMessage = error.message as string;
+        }
+        return <div>Error: {errorMessage}</div>;
+    }
+
 
     return (
         <div className='wrapper'>
@@ -57,19 +81,18 @@ const ProductList = ({ products = [] }: { products: Products[] }) => {
                                     <TableCell align="right">{product._id}</TableCell>
                                     <TableCell align="right">{product.category}</TableCell>
                                     <TableCell align="right">
-                                        <Button size='small' onClick={() =>  handleQuantityChange(product._id, 1) }>+</Button>
+                                        <Button disabled={isUpdating} size='small' onClick={() => handleQuantityChange(product._id, 1)}>+</Button>
                                     </TableCell>
                                     <TableCell align="right">
-                                        <Button size='small' onClick={() =>  handleQuantityChange(product._id, -1) }>-</Button>
+                                        <Button disabled={isUpdating} size='small' onClick={() => handleQuantityChange(product._id, -1)}>-</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
-            <div className='sales'>
-                            
-            </div>
+                <div className='sales'>
+                </div>
             </div>
         </div>
     )
