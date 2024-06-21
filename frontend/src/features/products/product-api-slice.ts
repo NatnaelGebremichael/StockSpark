@@ -34,11 +34,11 @@ export const productApiSlice = createApi({
                 }
             }),
 
-            updateProductQuantity: builder.mutation<Products, { id: String, quantity: Number}>({
-                query({ id, quantity}) {
+            updateProductQuantity: builder.mutation<Products, { id: String, quantity: Number }>({
+                query({ id, quantity }) {
                     return {
-                        url: `/products/${id}`,
-                        method: 'patch',
+                        url: `/products/${id}/quantity`,
+                        method: 'PATCH',
                         body: { quantity }
                     }
                 }
@@ -49,3 +49,4 @@ export const productApiSlice = createApi({
 })
 
 export const { useFetchProductsQuery, useUpdateProductQuantityMutation } = productApiSlice;
+export const { internalActions  } = productApiSlice.internalActions;
