@@ -6,14 +6,13 @@ import productRoutes from "./routes/productRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const { CORS_ORIGIN } = process.env;
+const Cors_Origin = process.env.CORS_ORIGIN;
 
 // Middleware
-// For Dev http://localhost:5173 (or current port)
 app.use(express.json());
 app.use(
   cors({
-    origin: CORS_ORIGIN ? CORS_ORIGIN.split(',') : [],
+    origin: Cors_Origin ? Cors_Origin.split(',') : [],
     methods: ["GET", "POST", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -32,7 +31,10 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello From Node API");
+  res.json({
+    message: "Hello From Node API",
+    CORS_ORIGIN: process.env.CORS_ORIGIN
+  });
 });
 app.use("/products", productRoutes);
 
