@@ -30,11 +30,14 @@ export const productApiSlice = createApi({
         return {
             fetchProducts: builder.query<Products[], void>({
                 query() {
-                    return '/products'
+                    return {
+                        url: '/products',
+                        method: 'GET'
+                    }
                 }
             }),
 
-            updateProductQuantity: builder.mutation<Products, { id: String, quantity: Number }>({
+            updateProductQuantity: builder.mutation<Products, { id: String, quantity: number }>({
                 query({ id, quantity }) {
                     return {
                         url: `/products/${id}/quantity`,

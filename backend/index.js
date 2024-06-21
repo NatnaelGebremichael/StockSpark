@@ -6,13 +6,24 @@ import productRoutes from "./routes/productRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const Cors_Origin = process.env.CORS_ORIGIN;
+const corsOrigins = [
+  'https://stock-spark.vercel.app',
+  'https://stock-spark-lfdk.vercel.app'
+];
 
 // Middleware
 app.use(express.json());
 app.use(
   cors({
-    origin: Cors_Origin ? Cors_Origin.split(',') : [],
+    origin: function (origin, callback) {
+      console.log('Request origin:', origin); // For debugging
+      if (!origin || corsOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        console.log('Origin not allowed by CORS:', origin); // For debugging
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
