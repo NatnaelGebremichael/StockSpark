@@ -49,4 +49,3 @@ export const productApiSlice = createApi({
 })
 
 export const { useFetchProductsQuery, useUpdateProductQuantityMutation } = productApiSlice;
-export const { internalActions  } = productApiSlice.internalActions;
