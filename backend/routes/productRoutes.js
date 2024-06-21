@@ -1,5 +1,6 @@
 // backend/routes/productRoutes.js
 import { Router } from "express";
+import cors from "cors";
 import {
   getProducts,
   createProduct,
@@ -9,14 +10,23 @@ import authMiddleware from "../authMiddleware.js";
 
 const router = Router();
 
+// CORS configuration
+const corsOptions = {
+  origin: ['https://stock-spark.vercel.app', 'https://stock-spark-lfdk.vercel.app'],
+  methods: ['GET', 'POST', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+// Apply CORS to all routes
+router.use(cors(corsOptions));
+
+// Pre-flight requests
+router.options('*', cors(corsOptions));
+
 router.get("/", authMiddleware, getProducts); // ROUTE TO GET all products
 router.post("/", authMiddleware, createProduct); // ROUTE TO CREATE NEW PRODUCT
 router.patch("/:id/quantity", authMiddleware, updateProductQuantity); // ROUTE TO UPDATE PRODUCT QUANTITY
 
-router.options("/:id/quantity", (req, res) => {
-  res.setHeader("Access-Control-Allow-Methods", "PATCH");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.sendStatus(200);
-});
 
 export default router;
