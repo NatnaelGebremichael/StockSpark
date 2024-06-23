@@ -38,7 +38,10 @@ export const productApiSlice = createApi({
                 query() {
                     return {
                         url: '/products',
-                        method: 'GET'
+                        method: 'GET',
+                        headers: {
+                            'x-vercel-protection-bypass': VERCEL_PROTECTION_BYPASS
+                        }
                     }
                 }
             }),
