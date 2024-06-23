@@ -9,7 +9,12 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "/",
+            "headers": {
+                "Access-Control-Allow-Origin": "https://stock-spark-git-dev-natnael92460s-projects.vercel.app",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Vercel-Protection-Bypass"
+            }
         }
     ]
 }

@@ -40,6 +40,7 @@ export const productApiSlice = createApi({
                         url: '/products',
                         method: 'GET',
                         headers: {
+                            'Authorization': `Bearer ${STOCK_SPARK_API_KEY}`,
                             'x-vercel-protection-bypass': VERCEL_PROTECTION_BYPASS
                         }
                     }
