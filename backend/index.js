@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const corsOrigins = [
   "https://stock-spark.vercel.app",
-  "https://stock-spark-lfdk.vercel.app",
+  "https://stock-spark-git-dev-natnael92460s-projects.vercel.app",
 ];
 
 // Middleware
